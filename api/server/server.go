@@ -3,6 +3,7 @@ package server
 import (
 	"MusicLibrary/api/routers"
 	"MusicLibrary/cfg"
+	"MusicLibrary/storage"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"log/slog"
@@ -21,7 +22,7 @@ func NewServer(cfg cfg.Config, log *slog.Logger) *Server {
 		log: log,
 	}
 
-	routers.SetupRouter(s.srv)
+	routers.SetupRouter(s.srv, &storage.SongStorage{})
 	return s
 }
 
