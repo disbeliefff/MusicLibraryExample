@@ -3,7 +3,6 @@ package main
 import (
 	"MusicLibrary/api/server"
 	"MusicLibrary/cfg"
-	"errors"
 	"github.com/phsym/console-slog"
 	"log/slog"
 	"os"
@@ -33,17 +32,5 @@ func initLogger() *slog.Logger {
 			AddSource: true,
 		}),
 	)
-	slog.SetDefault(logger)
-	slog.Info("Hello world!", "foo", "bar")
-	slog.Debug("Debug message")
-	slog.Warn("Warning message")
-	slog.Error("Error message", "err", errors.New("the error"))
-
-	logger = logger.With("foo", "bar").
-		WithGroup("the-group").
-		With("bar", "baz")
-
-	logger.Info("group info", "attr", "value")
-
 	return logger
 }
